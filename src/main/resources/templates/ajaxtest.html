@@ -1,37 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>AJAX</title>
     <script type="text/javascript">
         var xmlhttp;
-        function ajax(url,func)
+        function loadXMLDoc(url,cfunc)
         {
-            if(window.XMLHttpRequest)
-            {
+            if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
                 xmlhttp=new XMLHttpRequest();
-            }else
-            {
+            }
+            else
+            {// code for IE6, IE5
                 xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
             }
-            xmlhttp.onreadystatechange=func;
+            xmlhttp.onreadystatechange=cfunc;
             xmlhttp.open("GET",url,true);
             xmlhttp.send();
         }
         function myFunction()
         {
-            ajax("/Product/findProduct",function()
+            loadXMLDoc("/Product/findProduct",function()
             {
-                if(xmlhttp.readyState==4&&xmlhttp.status==200)
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
                 {
-                    document.getELementById("div1").innerHTML=xmlhttp.responseText;
+                    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
                 }
             });
         }
     </script>
 </head>
 <body>
-<div id="div1"><h2>Let AJAX change this text</h2></div>
-<button type="button" onclick="myFunction()">按下它</button>
+
+<div id="myDiv"><h2>Let AJAX change this text</h2></div>
+<button type="button" onclick="myFunction()">通过 AJAX 改变内容</button>
+
 </body>
 </html>
