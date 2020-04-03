@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX</title>
+    <script type="text/javascript">
+        var xmlhttp;
+        function ajax(url,func)
+        {
+            if(window.XMLHttpRequest)
+            {
+                xmlhttp=new XMLHttpRequest();
+            }else
+            {
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=func;
+            xmlhttp.open("GET",url,true);
+            xmlhttp.send();
+        }
+        function myFunction()
+        {
+            ajax("/Product/findProduct",function()
+            {
+                if(xmlhttp.readyState==4&&xmlhttp.status==200)
+                {
+                    document.getELementById("div1").innerHTML=xmlhttp.responseText;
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<div id="div1"><h2>Let AJAX change this text</h2></div>
+<button type="button" onclick="myFunction()">按下它</button>
+</body>
+</html>

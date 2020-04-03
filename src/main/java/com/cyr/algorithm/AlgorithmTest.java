@@ -1,9 +1,8 @@
 package com.cyr.algorithm;
 
 public class AlgorithmTest {
-    public static  void main(String args[])
-    {
-        Solution solution=new Solution ();
+    public static  void main(String args[]) {
+     /*   Solution solution=new Solution ();
         ListNode l1=new ListNode (2);
         l1.next=new ListNode (4);
         l1.next.next=new ListNode (3);
@@ -16,5 +15,9 @@ public class AlgorithmTest {
             System.out.println (result.val);
             result=result.next;
         }
+    }*/
+        String paymentDate="20190212000000";
+        paymentDate=paymentDate.substring (0,8);
+        System.out.println (paymentDate);
     }
 }

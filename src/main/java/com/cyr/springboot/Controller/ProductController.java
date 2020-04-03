@@ -65,4 +65,5 @@ public class ProductController {
         modelMap.addAttribute("hello","helloworld");
         return "index";
     }
+
 }
