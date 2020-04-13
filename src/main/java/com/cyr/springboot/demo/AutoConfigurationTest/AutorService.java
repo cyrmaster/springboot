@@ -4,9 +4,9 @@ public class AutorService {
     private String name;
     private long age;
 
-    public void service()
+    public String service()
     {
-        System.out.println ("AutoConfigueSucces,name="+name+"\nage="+age);
+        return"AutoConfigueSucces,name="+name+"\nage="+age;
     }
 
     public String getName () {
