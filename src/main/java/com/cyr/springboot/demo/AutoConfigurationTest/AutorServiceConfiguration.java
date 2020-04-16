@@ -1,6 +1,5 @@
 package com.cyr.springboot.demo.AutoConfigurationTest;
 
-import com.cyr.springboot.bean.Author;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
