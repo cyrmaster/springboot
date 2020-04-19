@@ -42,13 +42,7 @@ public class TestController {
         return  autorService.service ();
     }
 
-    @ApiOperation(value = "webSokect测试",notes = "广播式topic")
-    @MessageMapping("/welcome")//浏览器向服务端发送请求时，通过@MessaheMapping映射/welcome这个地址
-    @SendTo("/topic/getResponse")//当服务端有消息时，会对订阅了@SenTo中的路径的浏览器发送消息
-      public MessageResponse say(CyrMessage message) throws InterruptedException {
-        Thread.sleep(3000);
-        return  new MessageResponse("Welcome,"+message.getName()+"!");
-    }
+
 
 
 }
