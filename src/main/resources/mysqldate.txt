@@ -1,0 +1,8 @@
+CREATE TABLE `product` (
+  `id` bigint(10) NOT NULL AUTO_INCREMENT COMMENT '商品id',
+  `product_Name` varchar(25) DEFAULT NULL COMMENT '商品名称',
+  `price` decimal(8,3) DEFAULT NULL COMMENT '价格',
+  `product_Brief` varchar(125) DEFAULT NULL COMMENT '商品简介',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8
+

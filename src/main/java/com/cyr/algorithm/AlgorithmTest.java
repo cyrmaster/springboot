@@ -1,23 +1,17 @@
 package com.cyr.algorithm;
 
+import com.cyr.springboot.bean.Author;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class AlgorithmTest {
     public static  void main(String args[]) {
-     /*   Solution solution=new Solution ();
-        ListNode l1=new ListNode (2);
-        l1.next=new ListNode (4);
-        l1.next.next=new ListNode (3);
-        ListNode l2=new ListNode (5);
-        l2.next=new ListNode (6);
-        l2.next.next=new ListNode (4);
-        ListNode result=solution.addTwoNumbers (l1,l2);
-        while (result!=null)
+        List<Author> ints=new ArrayList<> ();
+        ints.add (new Author ());
+        if(ints!=null&&!ints.isEmpty ())
         {
-            System.out.println (result.val);
-            result=result.next;
+            System.out.println ("succces");
         }
-    }*/
-        String paymentDate="20190212000000";
-        paymentDate=paymentDate.substring (0,8);
-        System.out.println (paymentDate);
     }
 }
