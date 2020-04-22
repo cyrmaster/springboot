@@ -1,4 +1,4 @@
-package com.cyr.springboot.bean;
+package com.cyr.springboot.demo.AutoConfigurationTest;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
