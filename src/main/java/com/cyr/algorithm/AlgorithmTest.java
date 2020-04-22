@@ -1,6 +1,6 @@
 package com.cyr.algorithm;
 
-import com.cyr.springboot.bean.Author;
+import com.cyr.springboot.demo.AutoConfigurationTest.Author;
 
 import java.util.ArrayList;
 import java.util.List;
