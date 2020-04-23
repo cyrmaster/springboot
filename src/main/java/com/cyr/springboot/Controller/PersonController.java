@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @RestController
+@RequestMapping("/person")
 public class PersonController {
     @Autowired
     PersonRepository personRepository;
@@ -32,17 +33,17 @@ public class PersonController {
     }
 
     @RequestMapping("/findByNameAndAddress")
-    public Person findByNameAndAddress(String name,String address)
+    public Person findByNameAndAddress(String address,String name)
     {
-        Person person=personRepository.findByAddressAndName(name,address);
+        Person person=personRepository.findByAddressAndName(address,name);
         return  person;
     }
 
     @RequestMapping("/withNameAndAddressQuery")
-    public Person withNameAndAddressQuery(String name,String address)
+    public String  withNameAndAddressQuery(String name,String address)
     {
         Person person=personRepository.winthNameAndAddressQuery(name,address);
-        return  person;
+        return  person.toString();
     }
 
     @RequestMapping("/withNameAndAddressNamedQuery")
@@ -55,8 +56,7 @@ public class PersonController {
     @RequestMapping("/sort")
     public List<Person> sort()
     {
-       Sort sort=new Sort(Direction.ASC,"age");
-        List<Person> peoples=personRepository.findAll(sort);
+        List<Person> peoples=personRepository.findAll(Sort.by(Direction.ASC,"age"));
         return  peoples;
     }
 }

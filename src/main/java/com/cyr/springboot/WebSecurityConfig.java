@@ -23,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/","/login","/chat").permitAll()//设置对/和/login路径不拦截
-                .anyRequest().authenticated()
+                /*.anyRequest().authenticated()*/
                 .and()
                 .formLogin()
                 .loginPage("/login")
