@@ -3,6 +3,8 @@ package com.cyr.springboot.Controller;
 import com.cyr.springboot.Dao.PersonRepository;
 import com.cyr.springboot.bean.Person;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,17 +35,17 @@ public class PersonController {
     }
 
     @RequestMapping("/findByNameAndAddress")
-    public Person findByNameAndAddress(String address,String name)
+    public Person findByNameAndAddress(String name,String address)
     {
-        Person person=personRepository.findByAddressAndName(address,name);
+        Person person=personRepository.findByAddressAndName(name,address);
         return  person;
     }
 
     @RequestMapping("/withNameAndAddressQuery")
-    public String  withNameAndAddressQuery(String name,String address)
+    public Person withNameAndAddressQuery(String name,String address)
     {
         Person person=personRepository.winthNameAndAddressQuery(name,address);
-        return  person.toString();
+        return  person;
     }
 
     @RequestMapping("/withNameAndAddressNamedQuery")
@@ -58,5 +60,12 @@ public class PersonController {
     {
         List<Person> peoples=personRepository.findAll(Sort.by(Direction.ASC,"age"));
         return  peoples;
+    }
+
+    @RequestMapping("/page")
+    public Page<Person> page()
+    {
+        Page<Person> pagePeople=personRepository.findAll (PageRequest.of (1,2));
+        return pagePeople;
     }
 }
