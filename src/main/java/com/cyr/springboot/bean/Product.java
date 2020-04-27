@@ -3,6 +3,7 @@ package com.cyr.springboot.bean;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
+
 @JacksonXmlRootElement(localName = "Product")
 public class Product {
     @JacksonXmlProperty(localName = "id")
