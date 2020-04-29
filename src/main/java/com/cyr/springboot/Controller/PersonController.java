@@ -5,6 +5,7 @@ import com.cyr.springboot.Service.PersonService;
 import com.cyr.springboot.bean.Person;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/person")
@@ -88,4 +90,31 @@ public class PersonController {
     {
         return personService.savePersonWithoutRollBack (person);
     }
+    @ApiOperation(value = "无条件加入方法返回值入缓存")
+    @CachePut(value = "people",key="#person.id")
+    @RequestMapping(value = "savecache",method = RequestMethod.POST)
+    public Person save(@RequestBody Person person)
+    {
+        Person p=personRepository.save(person);
+        System.out.println("为id,key为："+p.getId()+"数据做了缓存");
+        return p;
+    }
+    @ApiOperation(value = "从缓存中删除相关数据")
+    @CachePut(value = "people")
+    @RequestMapping(value = "deletecache",method = RequestMethod.DELETE)
+    public void remove(Long id)
+    {
+        System.out.println("删除了id,key为："+id+"的数据缓存");
+        personRepository.deleteById(id);
+    }
+    @ApiOperation(value = "有缓存返回，无返回加入")
+    @CachePut(value = "people",key="#person.id")
+    @RequestMapping(value = "findcache",method = RequestMethod.POST)
+    public Optional<Person> find(@RequestBody Person person)
+    {
+        Optional<Person> p=personRepository.findById(person.getId());
+        System.out.println("为id,key为："+person.getId()+"数据做了缓存");
+        return p;
+    }
+
 }
