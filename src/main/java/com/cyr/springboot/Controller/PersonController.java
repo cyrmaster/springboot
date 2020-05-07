@@ -1,8 +1,10 @@
 package com.cyr.springboot.Controller;
 
 import com.cyr.springboot.Dao.PersonRepository;
+import com.cyr.springboot.Dao.Redis.PersonRedisDao;
 import com.cyr.springboot.Service.PersonService;
 import com.cyr.springboot.bean.Person;
+import com.cyr.springboot.bean.Personredis;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
@@ -10,11 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
@@ -28,6 +26,9 @@ public class PersonController {
 
     @Autowired
     PersonService personService;
+
+    @Autowired
+    PersonRedisDao personRedisDao;
 
     @RequestMapping("/save")
     public Person save(String name,String address,Integer age)
@@ -117,4 +118,22 @@ public class PersonController {
         return p;
     }
 
+    @ApiOperation(value ="RedisTemplate set，json传入对象")
+    @RequestMapping(value = "/redisSet",method = RequestMethod.POST)
+    public void set(@RequestBody Personredis person)
+    {
+        personRedisDao.save(person);
+    }
+    @ApiOperation(value = "StringRedisTemplate get,路径传参key ")
+    @RequestMapping(value = "/redisGetStr/{key}",method = RequestMethod.GET)
+    public String getStr(@PathVariable String key)
+    {
+        return personRedisDao.getString(key);
+    }
+    @ApiOperation(value = "RedisTemplate get,路径传参Key")
+    @RequestMapping(value = "/redisGetPerson/{id}",method = RequestMethod.GET)
+    public Personredis getPerson(@PathVariable String id)
+    {
+      return personRedisDao.getPerson(id);
+    }
 }

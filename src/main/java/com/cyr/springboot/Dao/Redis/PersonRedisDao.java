@@ -36,8 +36,12 @@ public class PersonRedisDao {
     {
         return  valOpsStr.get("xx");
     }
-    public Person getPerson()
+    public String getString(String key)
     {
-        return (Person)valOps.get("1");
+        return  valOpsStr.get(key);
+    }
+    public Personredis getPerson(String id)
+    {
+        return (Personredis)valOps.get(id);
     }
 }

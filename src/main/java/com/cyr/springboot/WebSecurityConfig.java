@@ -20,16 +20,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return  new BCryptPasswordEncoder();
     }
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
-                .antMatchers("/","/login","/chat").permitAll()//设置对/和/login路径不拦截
-                /*.anyRequest().authenticated()*/
+    protected void configure(HttpSecurity http) throws Exception {//重写请求拦截
+        http.csrf().disable().authorizeRequests()//通过authorizeRequests开始请求权限配置
+                .antMatchers("/","/login","/chat").permitAll()//设置对/和/login路径不拦截，使用ant风格的路径匹配
+                /*.anyRequest().authenticated()*/ //anyRequst:匹配所有路径，其余所有请求都需要认证后访问
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/chat").permitAll()
                 .and()
-                .logout()
+                .rememberMe()//开启cookie
+                .tokenValiditySeconds(12096000)//cookie有效期，1209600秒，2星期
+                .key("mycookie")
+                .and()
+                .logout()//定制注销行为
                 .permitAll();
     }
 
