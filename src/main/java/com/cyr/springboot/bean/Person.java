@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.Size;
 
 @Entity //注解指明这是一个和数据库表映射的实体类
 @NamedQuery(name="Person.withNameAndAddressNamedQuery",query="select p from Person p where p.name=?1 and address=?2")
@@ -13,6 +14,7 @@ public class Person {//通过实体类生产表
     @Id//注解指明这个属性映射为数据库的主键
     private Long id;
 
+    @Size(max=4,min=2)
     private String name;
 
     private Integer age;
