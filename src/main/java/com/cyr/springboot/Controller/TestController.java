@@ -1,5 +1,6 @@
 package com.cyr.springboot.Controller;
 
+import com.cyr.springboot.bean.MqMessage;
 import com.cyr.springboot.demo.AutoConfigurationTest.Author;
 import com.cyr.springboot.demo.AutoConfigurationTest.AutorService;
 import com.cyr.springboot.demo.WebSocket.CyrMessage;
@@ -9,6 +10,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.jms.core.JmsMessagingTemplate;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +25,9 @@ public class TestController {
 
     @Autowired
     private AutorService autorService;
+
+    @Autowired
+    private JmsMessagingTemplate jmsMessagingTemplate;
 
     /*@RequestMapping("/login")
     public String login()
@@ -43,6 +50,12 @@ public class TestController {
     }
 
 
+   @ApiOperation (value = "ActiveMq测试",notes = "使用内嵌ActiveMq")
+    @RequestMapping(value = "/SendMessage",method =RequestMethod.POST)
+    public void sendMessage(@RequestBody MqMessage mqMessage)
+   {
+
+   }
 
 
 }

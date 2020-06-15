@@ -7,11 +7,7 @@ import java.util.List;
 
 public class AlgorithmTest {
     public static  void main(String args[]) {
-        List<Author> ints=new ArrayList<> ();
-        ints.add (new Author ());
-        if(ints!=null&&!ints.isEmpty ())
-        {
-            System.out.println ("succces");
-        }
+    String s="202008101111";
+    String a=s.substring (0,8);
     }
 }
